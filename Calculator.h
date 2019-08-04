@@ -32,19 +32,20 @@ PINA=*((volatile unsigned char *const)0x);
 
 #define LCD_PORT PORTD
 #define DDIR_LCD_PORT DDRD
-#define LCD_Control_PINS PORTD
-#define DDIR_LCD_Control_PINS DDRD
+#define LCD_Control_PINS PORTC
+#define DDIR_LCD_Control_PINS DDRC
 #define DATA_shift 0
 #define LCD_D0 0
 #define LCD_D1 1
 #define LCD_D2 2
 #define LCD_D3 3
-#define LCD_RS 5
-#define LCD_RW 6
-#define LCD_EN 7
+#define LCD_RS 0
+#define LCD_RW 1
+#define LCD_EN 2
 
-#define KEYPAD_PORT PORTA
+#define KEYPAD_PORT PORTA     //write
 #define KEYPAD_DDIR DDRA
+#define KEYPAD_PIN PINA       //read
 #define R0 0
 #define R1 1
 #define R2 2
@@ -87,12 +88,12 @@ PINA=*((volatile unsigned char *const)0x);
 #define LCD_ENTRY_MODE                              (0x06)
 
 void LCD_init(void);
-void LCD_CLear_Screen ();
+void LCD_CLear_Screen();
 void LCD_Send_Command(unsigned char command);
 void LCD_Kick();
 void LCD_Send_Character(unsigned char Character);
 void LCD_GOTO_XY(unsigned char Line,unsigned char Position);
-void LCD_Send_String( char *String_TO_Disp);
+void LCD_Send_String(unsigned char *String_TO_Disp);
 void LCD_Display_Number(int Number);
 void LDC_Display_Real_Number(double Number);
 void KeyPad_init();
